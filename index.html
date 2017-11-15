@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网友晒暖心购物清单引热议</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,shrink-to-fit=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+    <script>
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audioAutoPlay('musicStar');
+        }, false);
+    </script>
+</head>
+<body>
+<!--横屏-->
+<div id="page-landscape" class="page-landscape">
+    <img src="img/phone.png" alt=""/>
+    <h3>为了更好的体验，请使用竖屏浏览</h3>
+</div>
+<!--竖屏-->
+<div id="page-portrait" class="page-portrait">
+    <!--预加载-->
+    <div class="load-page" id="loadingPage">
+        <div class="img-load-now">
+            <!--加载动画-->
+            <img class="loading-img" src="img/load.gif"/>
+            <p id="loadTxt">0%</p>
+        </div>
+    </div>
+    <!--正文-->
+    <div class="page-box" id="pageContainer">
+        <div class="page01" id="page01">
+            <!--上面文字-->
+            <div class="page-title" id="page-title">
+                <em></em>
+            </div>
+            <!--大背景图-->
+            <img src="img/X3.png" alt=""  class="bgpuzzle" id="bgpuzzle" />
+
+            <!--小块白色遮罩-->
+            <img src="img/b-bg01.png" class="b-bg01" id="puzzle01" alt=""/>
+            <img src="img/b-bg02.png" class="b-bg02" id="puzzle02" alt=""/>
+            <img src="img/b-bg03.png" class="b-bg03" id="puzzle03" alt=""/>
+            <!--底部文字-->
+            <div class="bottom-title" id="bottom-title">
+                <h2>清单不小心被撕掉了一块</h2>
+                <p>帮忙把它拼好吧</p>
+            </div>
+            <!--小手-->
+            <img src="img/hand.png" class="hand" alt=""/>
+            <!--可拖动小块-->
+            <img src="img/p-1.png" class="record01" id="moveicon01"/>
+            <img src="img/p-3.png" class="record02" id="moveicon02"/>
+            <img src="img/p-2.png" class="record03" id="moveicon03"/>
+
+        </div>
+        <div class="ending" id="ending">
+            <img src="img/123.jpg"/>
+
+        </div>
+
+    </div>
+</div>
+<!--pc端打开提示二维码-->
+<div class="viewPC">
+    <div class="ewmBox">
+        <div id="ewmImg"></div>
+        <p>请使用手机端打开</p>
+    </div>
+</div>
+<!--音乐-->
+<div class="btn-music open-music">
+    <img src="img/music-open.png" class="open music" style="display: block;"/>
+    <img src="img/music-close.png" class="clock music" style="display: none;"/>
+</div>
+<audio src="video/bg0202.mp3" id="musicStar"  loop="loop" preload="auto" ></audio>
+<audio src="video/game02.mp3" id="musicGame" preload="auto" ></audio>
+
+
+<script>
+    //页面提示二维码
+    if(navigator.userAgent.match(/(iPhone|iPod|Android|ios|SymbianOS)/i) == null){
+        console.log(window.innerWidth);
+        $('#ewmImg').qrcode(window.location.href);
+        $('.viewPC').show();
+    }
+</script>
+<script>
+    var musicStar = document.getElementById('musicStar');
+    var musicGame = document.getElementById('musicGame');
+    function audioAutoPlay(id){
+        musicGame = $('#musicGame')[0];
+        var audio = document.getElementById(id);
+        var play = function(){
+            audio.play();
+            musicGame.play();
+            musicGame.pause();
+            document.removeEventListener("touchstart",play, false);
+        };
+        audio.play();
+        audio.pause();
+        musicGame.play();
+        musicGame.pause();
+        document.addEventListener("touchstart",play, false);
+    }
+</script>
+<script src="js/style.js"></script>
+<script src="https://h5.xingyuanauto.com/weixin_serve/jssdk/js/jweixin-1.0.0.js"></script>
+<script src="js/wx_share.js"></script>
+</body>
+</html>
